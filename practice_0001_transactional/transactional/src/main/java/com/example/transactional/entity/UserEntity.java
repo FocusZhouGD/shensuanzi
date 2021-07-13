@@ -1,4 +1,4 @@
-package org.geekbang.time.commonmistakes.transaction.transactionproxyfailed;
+package com.example.transactional.entity;
 
 import lombok.Data;
 

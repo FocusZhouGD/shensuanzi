@@ -1,5 +1,7 @@
-package org.geekbang.time.commonmistakes.transaction.transactionproxyfailed;
+package com.example.transactional.transactionservice;
 
+import com.example.transactional.entity.UserEntity;
+import com.example.transactional.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
