@@ -1,4 +1,4 @@
-package org.geekbang.time.commonmistakes.transaction.transactionpropagation;
+package com.example.transactional.transactionpropagation;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

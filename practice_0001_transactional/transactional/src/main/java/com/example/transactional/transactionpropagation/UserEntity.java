@@ -1,4 +1,4 @@
-package org.geekbang.time.commonmistakes.transaction.transactionpropagation;
+package com.example.transactional.transactionpropagation;
 
 import lombok.Data;
 

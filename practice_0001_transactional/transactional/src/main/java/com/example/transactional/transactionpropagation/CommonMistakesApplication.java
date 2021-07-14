@@ -1,4 +1,4 @@
-package org.geekbang.time.commonmistakes.transaction.transactionpropagation;
+package com.example.transactional.transactionpropagation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
