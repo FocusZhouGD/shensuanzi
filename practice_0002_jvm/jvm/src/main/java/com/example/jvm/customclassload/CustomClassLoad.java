@@ -13,7 +13,6 @@ public class CustomClassLoad extends ClassLoader {
             Object object = clazz.newInstance();
             Method method = clazz.getMethod("hello");
             method.invoke(object);
-
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -28,7 +27,6 @@ public class CustomClassLoad extends ClassLoader {
 
     @Override
     protected Class<?> findClass(String name) {
-
         String path = this.getClass().getResource("/Hello.xlass").getPath();
         File file = new File(path);
         long length = file.length();
