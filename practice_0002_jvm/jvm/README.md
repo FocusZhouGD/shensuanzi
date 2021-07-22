@@ -6,31 +6,76 @@
  [参考铁锚大佬](https://github.com/renfufei/JAVA-000)
  
  
+ *生成GC日志
+  
+    java -Xloggc:gc.GCLogAnalysis.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps com.example.jvm.customclassload.gc.GCLogAnalysis
+  
+ * 模拟一下OOM
+  
+     1）模拟一下OOM，java -Xmx128m -XX:+PrintGCDetails GCLogAnalysis
+     
+     2）分别使用512m,1024m,2048m,4096m,观察GC信息的不同
+     
+ *  Young GC  Full GC 和 minor GC （小型GC）  major GC （大型GC）
+ 
+ * 串行GC UseSerialGC
  
  
- [GC (Allocation Failure) [PSYoungGen: 64286K->10742K(75264K)] 64286K->21800K(247296K), 0.0037172 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]
- [GC (Allocation Failure) [PSYoungGen: 75192K->10744K(139776K)] 86250K->41830K(311808K), 0.0060778 secs] [Times: user=0.03 sys=0.09, real=0.01 secs]
- [GC (Allocation Failure) [PSYoungGen: 139768K->10738K(139776K)] 170854K->88328K(311808K), 0.0078697 secs] [Times: user=0.00 sys=0.00, real=0.01 secs]
- [GC (Allocation Failure) [PSYoungGen: 139762K->10745K(268800K)] 217352K->129455K(440832K), 0.0066340 secs] [Times: user=0.00 sys=0.00, real=0.01 secs]
- [Full GC (Ergonomics) [PSYoungGen: 10745K->0K(268800K)] [ParOldGen: 118710K->114070K(254464K)] 129455K->114070K(523264K), [Metaspace: 2647K->2647K(1056768K)], 0.0156512 secs] [Times: user=0.02 sys=0.02, real=0.02 secs]
- [GC (Allocation Failure) [PSYoungGen: 257973K->10748K(268800K)] 372043K->190844K(523264K), 0.0110009 secs] [Times: user=0.05 sys=0.08, real=0.01 secs]
- [Full GC (Ergonomics) [PSYoungGen: 10748K->0K(268800K)] [ParOldGen: 180095K->169774K(369152K)] 190844K->169774K(637952K), [Metaspace: 2647K->2647K(1056768K)], 0.0206677 secs] [Times: user=0.13 sys=0.00, real=0.02 secs]
- [GC (Allocation Failure) [PSYoungGen: 258048K->87517K(484864K)] 427822K->257689K(854016K), 0.0232305 secs] [Times: user=0.06 sys=0.19, real=0.02 secs]
- [GC (Allocation Failure) [PSYoungGen: 484829K->103420K(512512K)] 655001K->346074K(881664K), 0.0218076 secs] [Times: user=0.08 sys=0.05, real=0.02 secs]
- [GC (Allocation Failure) [PSYoungGen: 512508K->157695K(728064K)] 755162K->431262K(1097216K), 0.0228024 secs] [Times: user=0.05 sys=0.08, real=0.02 secs]
- [GC (Allocation Failure) [PSYoungGen: 728063K->198654K(769024K)] 1001630K->517917K(1138176K), 0.0278521 secs] [Times: user=0.03 sys=0.09, real=0.03 secs]
- [Full GC (Ergonomics) [PSYoungGen: 198654K->0K(769024K)] [ParOldGen: 319262K->320905K(557056K)] 517917K->320905K(1326080K), [Metaspace: 2647K->2647K(1056768K)], 0.0542834 secs] [Times: user=0.44 sys=0.02, real=0.06 secs]
- [GC (Allocation Failure) [PSYoungGen: 570368K->161114K(1024000K)] 891273K->482020K(1581056K), 0.0223660 secs] [Times: user=0.02 sys=0.09, real=0.02 secs]
- [GC (Allocation Failure) [PSYoungGen: 934746K->196140K(1031168K)] 1255652K->596832K(1588224K), 0.0331996 secs] [Times: user=0.14 sys=0.06, real=0.03 secs]
- [GC (Allocation Failure) [PSYoungGen: 969772K->188857K(1076736K)] 1370464K->686258K(1633792K), 0.0381423 secs] [Times: user=0.16 sys=0.08, real=0.04 secs]
- [Full GC (Ergonomics) [PSYoungGen: 188857K->0K(1076736K)] [ParOldGen: 497401K->372794K(666112K)] 686258K->372794K(1742848K), [Metaspace: 2647K->2647K(1056768K)], 0.0423487 secs] [Times: user=0.34 sys=0.03, real=0.04 secs]
- 执行结束!共生成对象次数:16733
- Heap
-  PSYoungGen      total 1076736K, used 32041K [0x000000076c300000, 0x00000007c0000000, 0x00000007c0000000)
-   eden space 801792K, 3% used [0x000000076c300000,0x000000076e24a728,0x000000079d200000)
-   from space 274944K, 0% used [0x00000007af380000,0x00000007af380000,0x00000007c0000000)
-   to   space 285696K, 0% used [0x000000079d200000,0x000000079d200000,0x00000007ae900000)
-  ParOldGen       total 666112K, used 372794K [0x00000006c4800000, 0x00000006ed280000, 0x000000076c300000)
-   object space 666112K, 55% used [0x00000006c4800000,0x00000006db40ebb0,0x00000006ed280000)
-  Metaspace       used 2653K, capacity 4486K, committed 4864K, reserved 1056768K
-   class space    used 291K, capacity 386K, committed 512K, reserved 1048576K
+    java -XX:+UseSerialGC -Xms512m -Xmx512m -Xloggc:gc.demo.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps GCLogAnalysis
+    
+    java -XX:+UseSerialGC -Xmx512m -Xms512m -Xloggc:gc.gcloganalysis.useserialgc512m.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps com.example.jvm.customclassload.gc.GCLogAnalysis
+
+   观察Young GC 和 Full GC
+   
+ * 并行GC
+ 
+ 
+      java -XX:+UseParallelGC-Xms512m -Xmx512m-Xloggc:gc.demo.log-XX:+PrintGCDetails-XX:+PrintGCDateStampsGCLogAnalysis
+      
+      java -XX:+UseParallelGC -Xms512m -Xmx512m -Xloggc:gc.gcloganalysis.useparallelgc512m.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps com.example.jvm.customclassload.gc.GCLogAnalysis
+      
+      
+ * 不配置-Xms 会怎样？ 只配置-Xmx512m
+    
+    -Xms为-Xmx的一半
+ * 不配置 -Xmx 会怎样？ 只配置 -Xms512m
+   猜想 -Xmx默认1/4内存大小
+     yes
+ 
+ * CMS GC      
+ 
+ 
+    java -XX:+UseConcMarkSweepGC-Xms512m -Xmx512m-Xloggc:gc.demo.log-XX:+PrintGCDetails-XX:+PrintGCDateStampsGCLogAnalysis   
+     
+    java -XX:+UseConcMarkSweepGC -Xms512m -Xmx512m -Xloggc:gc.gcloganalysis.useconcmarksweepgc512m.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps com.example.jvm.customclassload.gc.GCLogAnalysis
+    
+
+      
+ 
+ 观察Young GC 与Full GC
+ 
+ 思考：假如Xmx/Xms设置4g会怎么样？  如果都一样就会报错 
+ 
+ -Xms4G 报错：Error occurred during initialization of VM
+ -Xmx4G 正常
+ 
+ 4g内存下跟并行gc相比呢？
+ 
+  并行gc出现一次Full GC 
+  
+  
+ * G1 GC 
+ 
+ 
+    java -XX:+UseG1GC-Xms512m -Xmx512m-Xloggc:gc.demo.log-XX:+PrintGCDetails-XX:+PrintGCDateStampsGCLogAnalysis
+    
+    java -XX:+UseG1GC -Xms512m -Xmx512m -Xloggc:gc.gc.gcloganalysis.useg1gc.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps com.example.jvm.customclassload.gc.GCLogAnalysis
+    
+    
+ 观察Young GC 与Full GC
+    
+ 思考：假如Xmx/Xms设置4g会怎么样？
+    
+ 4g内存下跟cms gc相比呢？ 
+ 
+   

@@ -1,0 +1,123 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 4294967296 bytes for Failed to commit area from 0x00000006c0000000 to 0x00000007c0000000 of length 4294967296.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3377), pid=164884, tid=0x000000000002ca90
+#
+# JRE version:  (8.0_251-b08) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.251-b08 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000036e2800):  JavaThread "Unknown thread" [_thread_in_vm, id=182928, stack(0x00000000031a0000,0x00000000032a0000)]
+
+Stack: [0x00000000031a0000,0x00000000032a0000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000036e2800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=182928, stack(0x00000000031a0000,0x00000000032a0000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00000000036e1bd0] Heap_lock - owner thread: 0x00000000036e2800
+
+heap address: 0x00000006c0000000, size: 4096 MB, Compressed Oops mode: Non-zero based:0x00000006bffff000, Oop shift amount: 3
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff71a320000 - 0x00007ff71a357000 	C:\Program Files (x86)\Common Files\Oracle\Java\javapath\java.exe
+0x00007fffe64d0000 - 0x00007fffe66c5000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007fffe5480000 - 0x00007fffe553d000 	C:\Windows\System32\KERNEL32.DLL
+0x00007fffe3e60000 - 0x00007fffe4128000 	C:\Windows\System32\KERNELBASE.dll
+0x00007fffe5260000 - 0x00007fffe530c000 	C:\Windows\System32\ADVAPI32.dll
+0x00007fffe5df0000 - 0x00007fffe5e8e000 	C:\Windows\System32\msvcrt.dll
+0x00007fffe53e0000 - 0x00007fffe547b000 	C:\Windows\System32\sechost.dll
+0x00007fffe5c50000 - 0x00007fffe5d7b000 	C:\Windows\System32\RPCRT4.dll
+0x00007fffe5540000 - 0x00007fffe56e0000 	C:\Windows\System32\USER32.dll
+0x00007fffe4470000 - 0x00007fffe4492000 	C:\Windows\System32\win32u.dll
+0x00007fffe4a40000 - 0x00007fffe4a6a000 	C:\Windows\System32\GDI32.dll
+0x00007fffe3d50000 - 0x00007fffe3e5b000 	C:\Windows\System32\gdi32full.dll
+0x00007fffe44a0000 - 0x00007fffe453d000 	C:\Windows\System32\msvcp_win.dll
+0x00007fffe4160000 - 0x00007fffe4260000 	C:\Windows\System32\ucrtbase.dll
+0x00007fffc39f0000 - 0x00007fffc3c8a000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1052_none_60b8f8fd71f5e8cb\COMCTL32.dll
+0x00007fffe5bc0000 - 0x00007fffe5bf0000 	C:\Windows\System32\IMM32.DLL
+0x0000000050ce0000 - 0x0000000050db2000 	D:\Program Files\Java\jre1.8.0_251\bin\msvcr100.dll
+0x0000000076af0000 - 0x000000007739b000 	D:\Program Files\Java\jre1.8.0_251\bin\server\jvm.dll
+0x00007fffe5e90000 - 0x00007fffe5e98000 	C:\Windows\System32\PSAPI.DLL
+0x00007fffce330000 - 0x00007fffce339000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007fffbce70000 - 0x00007fffbce97000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007fffdaa10000 - 0x00007fffdaa1a000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007fffe4920000 - 0x00007fffe498b000 	C:\Windows\System32\WS2_32.dll
+0x00007fffdf580000 - 0x00007fffdf58f000 	D:\Program Files\Java\jre1.8.0_251\bin\verify.dll
+0x00007fffc9e20000 - 0x00007fffc9e49000 	D:\Program Files\Java\jre1.8.0_251\bin\java.dll
+0x00007fffcbb40000 - 0x00007fffcbb56000 	D:\Program Files\Java\jre1.8.0_251\bin\zip.dll
+
+VM Arguments:
+jvm_args: -XX:+UseG1GC -Xms4096m -Xloggc:gc.gc.gcloganalysis.useg1gc.xms4096m.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps 
+java_command: com.example.jvm.customclassload.gc.GCLogAnalysis
+java_class_path (initial): .;D:\Program Files\Java\jdk1.8.0_251\lib\dt.jar;D:\Program Files\Java\jdk1.8.0_251\lib\tools.jar;
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=D:\Program Files\Java\jdk1.8.0_251
+CLASSPATH=.;D:\Program Files\Java\jdk1.8.0_251\lib\dt.jar;D:\Program Files\Java\jdk1.8.0_251\lib\tools.jar;
+PATH=D:\Program Files (x86)\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\Program Files\Git\cmd;D:\Program Files\Java\jdk1.8.0_251\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;D:\soft\feature\showdata\mysql-5.7.31-winx64\bin;D:\soft\devtool;C:\Users\admin\AppData\Local\Microsoft\WindowsApps;D:\Program Files\JetBrains\PyCharm 2020.1\bin;;D:\Program Files\Java\jdk1.8.0_251\bin;
+USERNAME=admin
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 12, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 19041 (10.0.19041.1023)
+
+CPU:total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 142 stepping 12, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+Memory: 4k page, physical 16474840k(4406840k free), swap 24666840k(2836064k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.251-b08) for windows-amd64 JRE (1.8.0_251-b08), built on Mar 12 2020 06:31:49 by "" with MS VC++ 10.0 (VS2010)
+
+time: Thu Jul 22 19:35:07 2021
+timezone: 中国标准时间
+elapsed time: 0 seconds (0d 0h 0m 0s)
+
