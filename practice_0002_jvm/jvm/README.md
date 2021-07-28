@@ -71,12 +71,18 @@
  
  思考：假如Xmx/Xms设置4g会怎么样？  如果都一样就会报错 
  
+ 2. CMS GC Commandline
+   ParNew ： 新生代是并行进行GC
+   
+    
  -Xms4G 报错：Error occurred during initialization of VM
  -Xmx4G 正常
  
  4g内存下跟并行gc相比呢？
  
   并行gc出现一次Full GC 
+  
+  [CMS GC 详解有OOM](https://www.jianshu.com/p/d6dc357b7770)
   
   
  * G1 GC 
@@ -92,6 +98,10 @@
  思考：假如Xmx/Xms设置4g会怎么样？
     
  4g内存下跟cms gc相比呢？ 
+ 
+ 
+ * ZGC GC 
+  1. java11默认的 支持4TB ，jdk13 支持16TB，停顿时间在 1-10ms G1是几百ms 在jdk8上不能使用
  
  
  
