@@ -1,0 +1,45 @@
+Java HotSpot(TM) 64-Bit Server VM (25.251-b08) for windows-amd64 JRE (1.8.0_251-b08), built on Mar 12 2020 06:31:49 by "" with MS VC++ 10.0 (VS2010)
+Memory: 4k page, physical 16474840k(6837388k free), swap 24666840k(12533240k free)
+CommandLine flags: -XX:InitialHeapSize=536870912 -XX:MaxHeapSize=4217559040 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC 
+0.692: [GC (Allocation Failure) [PSYoungGen: 131584K->7533K(153088K)] 131584K->7549K(502784K), 0.0049427 secs] [Times: user=0.03 sys=0.00, real=0.00 secs] 
+0.939: [GC (Allocation Failure) [PSYoungGen: 139117K->10989K(153088K)] 139133K->11013K(502784K), 0.0084136 secs] [Times: user=0.03 sys=0.00, real=0.01 secs] 
+0.992: [GC (Metadata GC Threshold) [PSYoungGen: 26325K->6055K(153088K)] 26349K->6087K(502784K), 0.0040358 secs] [Times: user=0.11 sys=0.00, real=0.00 secs] 
+0.997: [Full GC (Metadata GC Threshold) [PSYoungGen: 6055K->0K(153088K)] [ParOldGen: 32K->5833K(349696K)] 6087K->5833K(502784K), [Metaspace: 20448K->20448K(1067008K)], 0.0222975 secs] [Times: user=0.03 sys=0.00, real=0.02 secs] 
+1.536: [GC (Allocation Failure) [PSYoungGen: 131584K->6338K(214016K)] 137417K->12243K(563712K), 0.0060537 secs] [Times: user=0.13 sys=0.00, real=0.01 secs] 
+2.595: [GC (Allocation Failure) [PSYoungGen: 213698K->14710K(269824K)] 219603K->20623K(619520K), 0.0084970 secs] [Times: user=0.03 sys=0.00, real=0.01 secs] 
+27.827: [GC (Metadata GC Threshold) [PSYoungGen: 133181K->13290K(330240K)] 139095K->19211K(679936K), 0.0064584 secs] [Times: user=0.00 sys=0.00, real=0.01 secs] 
+27.833: [Full GC (Metadata GC Threshold) [PSYoungGen: 13290K->0K(330240K)] [ParOldGen: 5921K->16946K(349696K)] 19211K->16946K(679936K), [Metaspace: 33878K->33878K(1079296K)], 0.0629805 secs] [Times: user=0.36 sys=0.00, real=0.06 secs] 
+Heap
+ PSYoungGen      total 330240K, used 62189K [0x000000076c300000, 0x0000000784580000, 0x00000007c0000000)
+  eden space 314368K, 19% used [0x000000076c300000,0x000000076ffbb420,0x000000077f600000)
+  from space 15872K, 0% used [0x0000000780700000,0x0000000780700000,0x0000000781680000)
+  to   space 17408K, 0% used [0x000000077f600000,0x000000077f600000,0x0000000780700000)
+ ParOldGen       total 349696K, used 16946K [0x00000006c4800000, 0x00000006d9d80000, 0x000000076c300000)
+  object space 349696K, 4% used [0x00000006c4800000,0x00000006c588caf8,0x00000006d9d80000)
+ Metaspace       used 34949K, capacity 36564K, committed 36608K, reserved 1081344K
+  class space    used 4548K, capacity 4851K, committed 4864K, reserved 1048576K
+
+
+sb -u http://localhost:8088/api/hello
+
+Status 200:    100
+
+RPS: 82.2 (requests/second)
+Max: 50ms
+Min: 0ms
+Avg: 0.9ms
+
+  50%   below 0ms
+  60%   below 1ms
+  70%   below 1ms
+  80%   below 1ms
+  90%   below 1ms
+  95%   below 1ms
+  98%   below 3ms
+  99%   below 50ms
+99.9%   below 50ms
+
+
+
+
+

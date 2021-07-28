@@ -1,0 +1,41 @@
+Java HotSpot(TM) 64-Bit Server VM (25.251-b08) for windows-amd64 JRE (1.8.0_251-b08), built on Mar 12 2020 06:31:49 by "" with MS VC++ 10.0 (VS2010)
+Memory: 4k page, physical 16474840k(8443840k free), swap 24666840k(14365536k free)
+CommandLine flags: -XX:InitialHeapSize=4294967296 -XX:MaxHeapSize=4294967296 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC 
+0.952: [GC (Metadata GC Threshold) [PSYoungGen: 377490K->15644K(1223168K)] 377490K->15668K(4019712K), 0.0114396 secs] [Times: user=0.05 sys=0.00, real=0.01 secs] 
+0.963: [Full GC (Metadata GC Threshold) [PSYoungGen: 15644K->0K(1223168K)] [ParOldGen: 24K->14816K(2796544K)] 15668K->14816K(4019712K), [Metaspace: 20552K->20552K(1067008K)], 0.0533473 secs] [Times: user=0.16 sys=0.02, real=0.05 secs] 
+40.788: [GC (Metadata GC Threshold) [PSYoungGen: 644886K->19197K(1223168K)] 659703K->34085K(4019712K), 0.0168792 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] 
+40.805: [Full GC (Metadata GC Threshold) [PSYoungGen: 19197K->0K(1223168K)] [ParOldGen: 14888K->23545K(2796544K)] 34085K->23545K(4019712K), [Metaspace: 33856K->33856K(1079296K)], 0.0371692 secs] [Times: user=0.14 sys=0.00, real=0.04 secs] 
+48.587: [GC (Allocation Failure) [PSYoungGen: 1048576K->3043K(1223168K)] 1072121K->26596K(4019712K), 0.0022590 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+55.381: [GC (Allocation Failure) [PSYoungGen: 1051619K->2464K(1223168K)] 1075172K->26026K(4019712K), 0.0020308 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+61.665: [GC (Allocation Failure) [PSYoungGen: 1051040K->2512K(1223168K)] 1074602K->26082K(4019712K), 0.0019726 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+67.683: [GC (Allocation Failure) [PSYoungGen: 1051088K->2544K(1374720K)] 1074658K->26122K(4171264K), 0.0021069 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+75.635: [GC (Allocation Failure) [PSYoungGen: 1353200K->2496K(1373696K)] 1376778K->26082K(4170240K), 0.0021148 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+83.554: [GC (Allocation Failure) [PSYoungGen: 1353152K->2512K(1376768K)] 1376738K->26098K(4173312K), 0.0021530 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+91.436: [GC (Allocation Failure) [PSYoungGen: 1357264K->2528K(1375744K)] 1380850K->26122K(4172288K), 0.0021195 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+99.563: [GC (Allocation Failure) [PSYoungGen: 1357280K->2576K(1378304K)] 1380874K->26178K(4174848K), 0.0021908 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+
+
+java -Xms4g -Xmx4g  -XX:+PrintGCDetails   -Xloggc:gateway4GSecondgc.log  -jar .\gateway-server-0.0.1-SNAPSHOT.jar
+
+PS C:\Users\admin> sb -u http://localhost:8088/api/hello -c 20 -N 60
+Starting at 2021/7/28 14:09:45
+[Press C to stop the test]
+379647  (RPS: 5823.4)
+---------------Finished!----------------
+Finished at 2021/7/28 14:10:50 (took 00:01:05.3896155)
+Status 200:    379647
+
+RPS: 6205.8 (requests/second)
+Max: 357ms
+Min: 0ms
+Avg: 0.1ms
+
+  50%   below 0ms
+  60%   below 0ms
+  70%   below 0ms
+  80%   below 0ms
+  90%   below 0ms
+  95%   below 0ms
+  98%   below 2ms
+  99%   below 2ms
+99.9%   below 10ms

@@ -1,0 +1,44 @@
+Java HotSpot(TM) 64-Bit Server VM (25.251-b08) for windows-amd64 JRE (1.8.0_251-b08), built on Mar 12 2020 06:31:49 by "" with MS VC++ 10.0 (VS2010)
+Memory: 4k page, physical 16474840k(6808940k free), swap 24666840k(12453744k free)
+CommandLine flags: -XX:InitialHeapSize=536870912 -XX:MaxHeapSize=536870912 -XX:MaxNewSize=178958336 -XX:MaxTenuringThreshold=6 -XX:NewSize=178958336 -XX:OldPLABSize=16 -XX:OldSize=357912576 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:-UseLargePagesIndividualAllocation -XX:+UseParNewGC 
+0.767: [GC (Allocation Failure) 0.767: [ParNew: 139776K->7328K(157248K), 0.0063654 secs] 139776K->7328K(506816K), 0.0065542 secs] [Times: user=0.00 sys=0.00, real=0.01 secs] 
+1.094: [GC (Allocation Failure) 1.094: [ParNew: 147110K->12652K(157248K), 0.0081639 secs] 147110K->12652K(506816K), 0.0082210 secs] [Times: user=0.13 sys=0.00, real=0.01 secs] 
+1.102: [GC (CMS Initial Mark) [1 CMS-initial-mark: 0K(349568K)] 14992K(506816K), 0.0010096 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+1.103: [CMS-concurrent-mark-start]
+1.103: [CMS-concurrent-mark: 0.000/0.000 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+1.103: [CMS-concurrent-preclean-start]
+1.104: [CMS-concurrent-preclean: 0.001/0.001 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+1.104: [CMS-concurrent-abortable-preclean-start]
+1.357: [CMS-concurrent-abortable-preclean: 0.173/0.252 secs] [Times: user=1.45 sys=0.05, real=0.25 secs] 
+1.357: [GC (CMS Final Remark) [YG occupancy: 90860 K (157248 K)]1.357: [Rescan (parallel) , 0.0048634 secs]1.362: [weak refs processing, 0.0000194 secs]1.362: [class unloading, 0.0026712 secs]1.365: [scrub symbol table, 0.0029819 secs]1.368: [scrub string table, 0.0001668 secs][1 CMS-remark: 0K(349568K)] 90860K(506816K), 0.0113245 secs] [Times: user=0.13 sys=0.00, real=0.01 secs] 
+1.368: [CMS-concurrent-sweep-start]
+1.368: [CMS-concurrent-sweep: 0.000/0.000 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+1.368: [CMS-concurrent-reset-start]
+1.371: [CMS-concurrent-reset: 0.003/0.003 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+1.594: [GC (Allocation Failure) 1.594: [ParNew: 152428K->10048K(157248K), 0.0127648 secs] 152428K->13614K(506816K), 0.0128297 secs] [Times: user=0.05 sys=0.02, real=0.01 secs] 
+2.431: [GC (Allocation Failure) 2.431: [ParNew: 149824K->16473K(157248K), 0.0268337 secs] 153390K->20039K(506816K), 0.0269389 secs] [Times: user=0.25 sys=0.00, real=0.03 secs] 
+2.819: [GC (Allocation Failure) 2.819: [ParNew: 156249K->11115K(157248K), 0.0145628 secs] 159815K->26610K(506816K), 0.0146447 secs] [Times: user=0.13 sys=0.00, real=0.01 secs] 
+Heap
+ par new generation   total 157248K, used 84091K [0x00000000e0000000, 0x00000000eaaa0000, 0x00000000eaaa0000)
+  eden space 139776K,  52% used [0x00000000e0000000, 0x00000000e4743ea0, 0x00000000e8880000)
+  from space 17472K,  63% used [0x00000000e9990000, 0x00000000ea46ad88, 0x00000000eaaa0000)
+  to   space 17472K,   0% used [0x00000000e8880000, 0x00000000e8880000, 0x00000000e9990000)
+ concurrent mark-sweep generation total 349568K, used 15495K [0x00000000eaaa0000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 35144K, capacity 36764K, committed 36932K, reserved 1081344K
+  class space    used 4542K, capacity 4851K, committed 4964K, reserved 1048576K
+
+
+
+java -Xms4096m -Xmx512m -XX:+UseConcMarkSweepGC  -XX:+PrintGCDetails   -Xloggc:gateway521mCMSgc.log  -jar .\gateway-server-0.0.1-SNAPSHOT.jar
+
+
+java -Xms4096m -Xmx4096m -XX:+UseConcMarkSweepGC  -XX:+PrintGCDetails   -Xloggc:gateway4GCMSgc.log  -jar .\gateway-server-0.0.1-SNAPSHOT.jar
+
+
+
+
+
+java -Xms512m -Xmx512m -XX:+UseG1GC  -XX:+PrintGCDetails   -Xloggc:gateway521mG1gc.log  -jar .\gateway-server-0.0.1-SNAPSHOT.jar
+
+
+java -Xms512m -Xmx512m -XX:+UseG1GC  -XX:+PrintGCDetails   -Xloggc:gateway521mG1gc.log  -jar .\gateway-server-0.0.1-SNAPSHOT.jar

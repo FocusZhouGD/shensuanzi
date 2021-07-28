@@ -49,7 +49,22 @@
      
     java -XX:+UseConcMarkSweepGC -Xms512m -Xmx512m -Xloggc:gc.gcloganalysis.useconcmarksweepgc512m.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps com.example.jvm.customclassload.gc.GCLogAnalysis
     
-
+    
+  1.CMS GC(并发标记清理垃圾回收器) 6个阶段
+  
+  
+            1.初始标记：为了收集应用程序的对象引用需要暂停应用程序线程，该阶段完成后，应用程序线程再次启动。
+            2.并发标记：从第一阶段收集到的对象引用开始，遍历所有其他的对象引用。
+            3.并发预清理：改变当运行第二阶段时，由应用程序线程产生的对象引用，以更新第二阶段的结果。
+            4.重标记：由于第三阶段是并发的，对象引用可能会发生进一步改变。因此，应用程序线程会再一次
+            被暂停以更新这些变化，并且在进行实际的清理之前确保一个正确的对象引用视图。
+            这一阶段十分重要，因为必须避免收集到仍被引用的对象。
+            5.并发清理：所有不再被应用的对象将从堆里清除掉。
+            6.并发重置：收集器做一些收尾的工作，以便下一次GC周期能有一个干净的状态。
+    
+    其中4个阶段(名字以Concurrent开始的)与实际的应用程序是并发执行的，
+    而其他2个阶段需要暂停应用程序线程(STW).
+  
       
  
  观察Young GC 与Full GC
