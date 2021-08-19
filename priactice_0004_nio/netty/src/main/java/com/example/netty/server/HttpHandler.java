@@ -54,7 +54,7 @@ public class HttpHandler extends ChannelInboundHandlerAdapter {
 
         try {
          
-            String value = "hello,kimmking";
+            String value = "hello,netty of king";
             response = new DefaultFullHttpResponse(HTTP_1_1, OK, Unpooled.wrappedBuffer(value.getBytes("UTF-8")));
             response.headers().set("Content-Type", "application/json");
             response.headers().setInt("Content-Length", response.content().readableBytes());

@@ -1,9 +1,7 @@
 package com.example.client.okclient;
 
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.*;
+import okio.BufferedSink;
 
 import java.io.IOException;
 
@@ -17,7 +15,8 @@ public class OKHttpClient {
 
 
     public static void main(String[] args) {
-        testGet("https://www.baidu.com/");
+        //testGet("http://localhost:8089/test");
+        testPost("http://localhost:8089/test");
     }
 
     public static void testGet(String url){
@@ -33,6 +32,23 @@ public class OKHttpClient {
     }
 
     public static void testPost(String url){
+        OkHttpClient client =new OkHttpClient();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"),"");
+        Request request =new Request.Builder().url(url).post(requestBody).build();
+        Call call = client.newCall(request);
+//        Response response = call.execute();
+//        System.out.println("ok client response:" + response.body().string());
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                System.out.println("调用失败了。。。。。"+e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                System.out.println("ok http client response :"+ response.body().string());
+            }
+        });
 
     }
 
