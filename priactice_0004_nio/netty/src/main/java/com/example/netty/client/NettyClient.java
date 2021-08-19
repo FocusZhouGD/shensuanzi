@@ -32,7 +32,7 @@ public class NettyClient {
                         channel.pipeline().addLast(new HttpObjectAggregator(256));
                         channel.pipeline().addLast(new HttpContentDecompressor());
                         channel.pipeline().addLast(new HttpClienthandler);
-
+//https://blog.csdn.net/feinifi/article/details/102981475
                     }
                 });
 
