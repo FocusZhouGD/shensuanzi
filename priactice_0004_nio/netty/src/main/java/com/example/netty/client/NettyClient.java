@@ -1,10 +1,7 @@
 package com.example.netty.client;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.http.HttpClientCodec;
@@ -31,10 +28,19 @@ public class NettyClient {
                         channel.pipeline().addLast(new HttpClientCodec());
                         channel.pipeline().addLast(new HttpObjectAggregator(256));
                         channel.pipeline().addLast(new HttpContentDecompressor());
-                        channel.pipeline().addLast(new HttpClienthandler);
-//https://blog.csdn.net/feinifi/article/details/102981475
+                        channel.pipeline().addLast(new HttpClientHandler());
+               //https://blog.csdn.net/feinifi/article/details/102981475
                     }
                 });
+        try {
+            ChannelFuture future = bootstrap.connect("127.0.0.1", 8089).sync();
+            future.channel().closeFuture().sync();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }finally {
+            group.shutdownGracefully();
+        }
 
 
     }
