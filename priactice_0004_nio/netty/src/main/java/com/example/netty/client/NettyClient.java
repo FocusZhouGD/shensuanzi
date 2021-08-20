@@ -34,8 +34,8 @@ public class NettyClient {
                 });
         try {
             ChannelFuture future = bootstrap.connect("127.0.0.1", 8089).sync();
+            //监听服务器关闭监听
             future.channel().closeFuture().sync();
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }finally {
