@@ -10,7 +10,10 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 public class TimeNettyClient {
-    public void connect(int port,String host){
+    public static void main(String[] args) {
+        connect(8099,"127.0.0.1");
+    }
+    public static void connect(int port, String host){
         //配置客户端NIO线程组
         EventLoopGroup group =new NioEventLoopGroup();
         try {
