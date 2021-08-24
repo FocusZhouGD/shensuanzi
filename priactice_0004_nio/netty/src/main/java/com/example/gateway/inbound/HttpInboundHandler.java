@@ -5,6 +5,7 @@ import com.example.gateway.filter.ProxyBizFilter;
 import com.example.gateway.outbound.HttpOutboundHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.handler.codec.http.FullHttpRequest;
 
 public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
 
@@ -38,6 +39,12 @@ public HttpInboundHandler(String proxyServer) {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         //ctx.fireChannelRead(msg);
         System.out.println("=== channelRead(ChannelHandlerContext ctx)");
+        if (false==(msg instanceof FullHttpRequest)){
+            return;
+        }
+        FullHttpRequest fullRequest= (FullHttpRequest) msg;
+        filter.filter(fullRequest,ctx);
+        handler.handle(fullRequest,ctx);
     }
 
 }
