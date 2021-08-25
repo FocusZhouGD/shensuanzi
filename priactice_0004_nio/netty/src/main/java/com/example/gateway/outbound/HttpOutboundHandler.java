@@ -8,7 +8,12 @@ import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http2.HttpUtil;
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.NO_CONTENT;
@@ -28,7 +33,7 @@ public class HttpOutboundHandler {
         FullHttpResponse response=null;
         HttpHeaders headers = fullRequest.headers();
         // 发起请求使用httpclient 或者okclient客户端
-        String body= null;
+        String body= invokeMethodOkClient(url);
         try {
             byte[] bytesArray = body.getBytes("UTF-8");
             response=new DefaultFullHttpResponse(HTTP_1_1,OK, Unpooled.wrappedBuffer(bytesArray));
@@ -56,6 +61,25 @@ public class HttpOutboundHandler {
         }
 
 
+    }
+
+    /**
+     * 发起客户端调用
+     * @param url
+     * @return
+     */
+    private String invokeMethodOkClient( String url) {
+        OkHttpClient client =new OkHttpClient();
+        Request request = new Request.Builder().url(url).get().build();
+        Call call = client.newCall(request);
+        try {
+            Response response = call.execute();
+            System.out.println("ok client response:"+ response.body().string());
+            return response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     private void exceptionCaught(ChannelHandlerContext ctx, UnsupportedEncodingException e) {

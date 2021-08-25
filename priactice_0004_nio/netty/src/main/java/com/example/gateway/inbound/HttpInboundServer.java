@@ -46,19 +46,19 @@ public class HttpInboundServer {
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
 
-        b.group(bossGroup,workGroup)
+                b.group(bossGroup, workGroup)
                 .channel(NioServerSocketChannel.class)
                 .handler(new LoggingHandler(LogLevel.INFO))
                 .childHandler(new HttpInboundInitializer(this.proxyServer));
 
 
         try {
-            Channel ch= b.bind(port).sync().channel();
-            System.out.println("开启netty http服务器，监听地址和端口为 http://127.0.0.1:"+port+"/");
+            Channel ch = b.bind(port).sync().channel();
+            System.out.println("开启netty http服务器，监听地址和端口为 http://127.0.0.1:" + port + "/");
             ch.closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
         }
