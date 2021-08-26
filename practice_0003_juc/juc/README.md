@@ -12,3 +12,8 @@
 3、DiscardLastPolicy 抛弃最先消息策略
 
 4、CallerRunsPolicy 由调用者所在的线程执行该任务
+
+
+
+#同步锁、显示锁
+* 三大性：原子性、可见性、顺序性
