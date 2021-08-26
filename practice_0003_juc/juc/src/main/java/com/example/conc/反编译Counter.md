@@ -347,7 +347,7 @@ SourceFile: "CounterSynchronize.java"
 
 
 
-* 总结：synchronize在方法上 底层会使用ACC_SYNCHRONIZED指令，如果在代码块中会使用  monitorenter和monitorexit指令
+* 总结：synchronize在类方法上和实例方法上 底层会使用ACC_SYNCHRONIZED指令，如果在代码块中会使用  monitorenter和monitorexit指令
       
       
       
