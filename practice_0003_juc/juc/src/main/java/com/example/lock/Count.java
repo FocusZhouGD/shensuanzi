@@ -16,6 +16,7 @@ public class Count {
             Thread.sleep(1000);
             System.out.println(Thread.currentThread().getName() + "get end");
             lock.unlock();
+            System.out.println(Thread.currentThread().getName() + " un lock");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -28,6 +29,7 @@ public class Count {
             Thread.sleep(1000);
             System.out.println(Thread.currentThread().getName() + "pet end");
             lock.unlock();
+            System.out.println(Thread.currentThread().getName() + " un lock");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
