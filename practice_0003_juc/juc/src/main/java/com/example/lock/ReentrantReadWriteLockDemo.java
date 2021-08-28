@@ -47,4 +47,5 @@ public class ReentrantReadWriteLockDemo {
      * Thread-6put begin
      * Thread-6pet end
      */
+    //读锁不互斥，写锁互斥
 }
