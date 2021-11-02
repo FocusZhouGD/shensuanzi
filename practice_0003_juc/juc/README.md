@@ -15,9 +15,19 @@
 
 * 四种创建方式
 
+* dubbo中线程池原理
+1、 IO处理线程池（使用netty）
+2、 服务调用线程池
+
 
 
 
 #同步锁、显示锁
 * 三大性：原子性、可见性、顺序性
+
+
+
+* Synchronized 和ReentrantLock
+
+  
 
