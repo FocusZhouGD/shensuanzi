@@ -14,4 +14,10 @@ import com.example.transactional.entity.OrderInfo;
  */
 public interface OrderInfoService extends IService<OrderInfo> {
 
+
+    int selectAll();
+
+    boolean insert(OrderInfo orderInfo);
+
+
 }
