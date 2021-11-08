@@ -13,4 +13,6 @@ import com.example.transactional.entity.Product;
  */
 public interface ProductService extends IService<Product> {
 
+    void sellProduct();
+
 }
