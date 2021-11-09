@@ -33,8 +33,11 @@ public class OrderController {
             }).start();
             cd.countDown();
         }
+    }
 
-
+    @GetMapping("/test")
+    public void sellOne() {
+        productService.sellProduct();
     }
 
 
