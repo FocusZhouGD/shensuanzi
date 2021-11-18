@@ -7,9 +7,15 @@ import com.example.transactional.entity.Product;
 import com.example.transactional.mapper.ProductMapper;
 import com.example.transactional.oneuntils.ThreadPoolUtil;
 import com.example.transactional.service.ProductService;
+import com.example.transactional.util.ThreadPollUtil;
+import com.example.transactional.util.ThreadPools;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -47,12 +53,19 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     @Override
     public void testForDeal() {
-//        ThreadPollUtil.execute(()->{
+
+//        ThreadPools.exec.submit(()->{
 //            dealSave();
 //        });
-        ThreadPoolUtil.poolSubmit().submit(()->{
+
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(6, 8, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(32));
+
+        executor.submit(() -> {
             dealSave();
         });
+//        ThreadPoolUtil.poolSubmit().submit(()->{
+//            dealSave();
+//        });
     }
 
     /**
@@ -68,11 +81,11 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
      * 要加try
      */
     private void dealSave() {
-        for (int i=1;i<100;i++){
+        for (int i = 1; i < 100; i++) {
             try {
                 save(i);
             } catch (Exception e) {
-                System.out.println("发生异常"+i);
+                System.out.println("发生异常" + i);
                 e.printStackTrace();
                 continue;
             }
@@ -80,14 +93,18 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     private void save(int i) {
-        Product product =new Product();
-        if (i==50){
-            JSONObject object =new JSONObject();
+        Product product = new Product();
+        if (i == 50) {
+            JSONObject object = new JSONObject();
             long currentPoint = object.getLong("current_point");
             product.setProductCount(currentPoint);
-        }else {
+        } else if (i == 80) {
+            JSONObject object = new JSONObject();
+            long currentPoint = object.getLong("current_point");
+            product.setProductCount(currentPoint);
+        } else {
             product.setProductCount((long) i);
-            product.setProductName("测试"+i);
+            product.setProductName("测试" + i);
         }
         baseMapper.insert(product);
     }

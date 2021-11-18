@@ -7,6 +7,9 @@ import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 次工具类有问题 不可用
+ */
 public class ThreadPollUtil {
 
     public static ThreadPoolExecutor threadPool;
@@ -34,14 +37,14 @@ public class ThreadPollUtil {
      * 无返回值执行
      */
     public static void execute(Runnable runnable) {
-        threadPool.execute(runnable);
+        getThreadPool().submit(runnable);
     }
 
     /**
      * 有返回执行
      */
     public static <T> Future<T> submit(Callable<T> callable) {
-        return threadPool.submit(callable);
+        return  getThreadPool().submit(callable);
     }
 
     /**
