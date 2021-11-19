@@ -26,7 +26,7 @@ public class OrderController {
             new Thread(() -> {
                 try {
                     cd.await();
-                    productService.sellProduct();
+                    productService.sellProducts();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

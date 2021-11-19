@@ -3,12 +3,15 @@ package com.example.transactional.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.example.transactional.entity.OrderInfo;
 import com.example.transactional.entity.Product;
+import com.example.transactional.mapper.OrderInfoMapper;
 import com.example.transactional.mapper.ProductMapper;
 import com.example.transactional.oneuntils.ThreadPoolUtil;
 import com.example.transactional.service.ProductService;
 import com.example.transactional.util.ThreadPollUtil;
 import com.example.transactional.util.ThreadPools;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,25 +33,35 @@ import java.util.concurrent.locks.ReentrantLock;
 @Service
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements ProductService {
 
+    @Autowired
+    private OrderInfoMapper orderInfoMapper;
+
     private Lock lock = new ReentrantLock(true);
 
-    @Transactional
+    @Transactional(noRollbackFor = ArithmeticException.class,rollbackFor = ArithmeticException.class)
     @Override
     public void sellProduct() {
-        lock.lock();
-        System.out.println(Thread.currentThread().getName() + ":进入方法");
-        Product product = baseMapper.selectById(1);
-        Long productCount = product.getProductCount();
-        System.out.println(Thread.currentThread().getName() + ":当前库存 =" + productCount);
-        if (productCount > 0) {
-            product.setProductCount(productCount - 1);
-            Integer integer = baseMapper.updateById(product);
-            System.out.println(Thread.currentThread().getName() + ":库存减少完毕，创建订单");
-        } else {
-            System.out.println(Thread.currentThread().getName() + "没有库存啦");
+        try {
+            lock.lock();
+            System.out.println(Thread.currentThread().getName() + ":进入方法");
+            Product product = baseMapper.selectById(1);
+            Long productCount = product.getProductCount();
+            System.out.println(Thread.currentThread().getName() + ":当前库存 =" + productCount);
+            if (productCount > 0) {
+                product.setProductCount(productCount - 1);
+                Integer integer = baseMapper.updateById(product);
+                System.out.println(Thread.currentThread().getName() + ":库存减少完毕，创建订单");
+            } else {
+                System.out.println(Thread.currentThread().getName() + "没有库存啦");
+            }
+
+            int a= 1/0;
+//        }catch (ArithmeticException e){
+//            System.out.println("yichang");
+        }finally {
+            lock.unlock();
         }
 
-        lock.unlock();
     }
 
     @Override
@@ -66,6 +79,35 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 //        ThreadPoolUtil.poolSubmit().submit(()->{
 //            dealSave();
 //        });
+    }
+
+    @Transactional
+    @Override
+    public void sellProducts() {
+        try {
+            lock.lock();
+            System.out.println(Thread.currentThread().getName() + ":抢到锁啦，进入方法");
+            Product product = baseMapper.selectById(1);
+            Long productCount = product.getProductCount();
+            System.out.println(Thread.currentThread().getName() + ":当前库存 =" + productCount);
+            if (productCount > 0) {
+                product.setProductCount(productCount - 1);
+                Integer integer = baseMapper.updateById(product);
+                //创建订单数
+                OrderInfo orderInfo =new OrderInfo();
+                orderInfo.setBuyName(Thread.currentThread().getName());
+                orderInfo.setBuyGoods(product.getProductName());
+                orderInfoMapper.insert(orderInfo);
+                System.out.println(Thread.currentThread().getName() + ":库存减少完毕，创建订单完毕！");
+            } else {
+                System.out.println(Thread.currentThread().getName() + "没有库存啦");
+            }
+            System.out.println(Thread.currentThread().getName()+":释放锁！");
+        } finally {
+            lock.unlock();
+        }
+
+
     }
 
     /**
