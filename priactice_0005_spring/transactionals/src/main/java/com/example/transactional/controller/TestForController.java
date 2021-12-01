@@ -18,4 +18,16 @@ public class TestForController {
         productService.testForDeal();
         return "ok";
     }
+
+
+    public static void main(String[] args) {
+
+        booler();
+
+    }
+
+    private static Boolean booler() {
+        Boolean flag = false;
+        return flag != null && flag;
+    }
 }

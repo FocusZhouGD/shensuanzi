@@ -19,4 +19,5 @@ public interface ProductService extends IService<Product> {
 
     void sellProducts();
 
+    void sellRightProducts();
 }

@@ -41,4 +41,32 @@ public class OrderController {
     }
 
 
+
+    @GetMapping("/tests")
+    public void sellOnes() {
+        productService.sellProducts();
+    }
+
+
+    /**
+     * 解决方案一
+     */
+    @GetMapping("/right1")
+    public void right1() {
+        CountDownLatch cd = new CountDownLatch(100);
+        for (int i = 0; i <= 100; i++) {
+            new Thread(() -> {
+                try {
+                    cd.await();
+                    productService.sellRightProducts();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+            cd.countDown();
+        }
+    }
+
+
+
 }

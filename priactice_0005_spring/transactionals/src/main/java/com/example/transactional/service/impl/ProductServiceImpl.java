@@ -38,7 +38,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     private Lock lock = new ReentrantLock(true);
 
-    @Transactional(noRollbackFor = ArithmeticException.class,rollbackFor = ArithmeticException.class)
+    @Transactional(rollbackFor = ArithmeticException.class)
     @Override
     public void sellProduct() {
         try {
@@ -56,8 +56,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
             }
 
             int a= 1/0;
-//        }catch (ArithmeticException e){
-//            System.out.println("yichang");
+        }catch (ArithmeticException e){
+            System.out.println("yichang");
         }finally {
             lock.unlock();
         }
@@ -80,6 +80,9 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 //            dealSave();
 //        });
     }
+
+
+
 
     @Transactional
     @Override
@@ -108,6 +111,40 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         }
 
 
+    }
+
+    @Autowired
+    private ProductServiceImpl productService;
+
+    @Override
+    public void sellRightProducts() {
+        lock.lock();
+        try {
+            productService.sellNoLockProduct();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    @Transactional
+    public void sellNoLockProduct() {
+        System.out.println(Thread.currentThread().getName() + ":抢到锁啦，进入方法");
+        Product product = baseMapper.selectById(1);
+        Long productCount = product.getProductCount();
+        System.out.println(Thread.currentThread().getName() + ":当前库存 =" + productCount);
+        if (productCount > 0) {
+            product.setProductCount(productCount - 1);
+            Integer integer = baseMapper.updateById(product);
+            //创建订单数
+            OrderInfo orderInfo =new OrderInfo();
+            orderInfo.setBuyName(Thread.currentThread().getName());
+            orderInfo.setBuyGoods(product.getProductName());
+            orderInfoMapper.insert(orderInfo);
+            System.out.println(Thread.currentThread().getName() + ":库存减少完毕，创建订单完毕！");
+        } else {
+            System.out.println(Thread.currentThread().getName() + "没有库存啦");
+        }
+        System.out.println(Thread.currentThread().getName()+":释放锁！");
     }
 
     /**
