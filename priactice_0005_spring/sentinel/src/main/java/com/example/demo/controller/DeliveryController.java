@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/delivery")
+@RequestMapping("/测试")
 @Slf4j
 public class DeliveryController {
 
