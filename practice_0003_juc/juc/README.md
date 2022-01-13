@@ -29,5 +29,30 @@
 
 * Synchronized 和ReentrantLock
 
+1、使用场景不一样
+2、ReentrantLock默认公平锁， Synchronized非公平
+
+
+Synchronized 
+3、底层实现不一样  Synchronized 是jvm层面的 底层实现是monitorenter和monitorenexit  ；ReentrantLock是api层面的
+
+4、是否可以释放
+
+Synchronized可以自动释放， private Lock lock = new ReentrantLock();要手动释放，lock.lock unlock,结合try、final使用
+
+
+5、是否可以中断
+Synchronized 不可以中断，和ReentrantLock可以中断，通过超时时间 trylock(long timeout,TimeUnit unit)
+
+
+6、锁是否可以绑定条件
+
+ ConcurrentHashMap 1.7采用分段锁 
+ 1.8使用 CAS和 Synchronized  跟数据结构有关
+ 
+
+
+
+
   
 
