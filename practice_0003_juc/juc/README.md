@@ -3,6 +3,13 @@
 * [资料](https://mp.weixin.qq.com/s/k6t7yJLx73dWov835XVy3A)
 
 #线程池
+
+
+* 队列
+ArrayBlockingQueue 有界队列，可以有效
+LinkedBlockingQueue 无界队列
+
+
 * 拒绝策略
 
 1、AbortPolicy 直接拒绝并抛出异常策略
@@ -24,6 +31,8 @@
 
 #同步锁、显示锁
 * 三大性：原子性、可见性、顺序性
+
+事务特性：原子性、一致性、隔离性、持久性。
 
 
 
