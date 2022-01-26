@@ -1,5 +1,9 @@
 package com.example.base;
 
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @ClassName BaseTryCatch
  * @Description TODO
@@ -9,7 +13,16 @@ package com.example.base;
  **/
 public class BaseTryCatch {
 
+
+
+
     public static void main(String[] args) {
+
+
+        List<String> objects = Collections.synchronizedList(new ArrayList<>());
+        Map<Object, Object> objectObjectMap = Collections.synchronizedMap(new HashMap<>());
+
+
         String s = testFinal();
         System.out.println(s);
     }
