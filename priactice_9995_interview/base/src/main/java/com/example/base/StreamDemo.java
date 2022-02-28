@@ -8,9 +8,7 @@ package com.example.base;
  * @Version 1.0
  **/
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -77,9 +75,15 @@ public class StreamDemo {
         list.add(s3);
 
         Map<Integer, String> collect = list.stream().collect(Collectors.toMap(t -> t.getId(), t -> t.getName()));
+        List list1 = Optional.ofNullable(list).orElse(Collections.EMPTY_LIST);
         Map<Integer, Student> collect1 = list.stream().collect(Collectors.toMap(t -> t.getId(), t -> t));
         System.out.println(collect);
         System.out.println(collect1);
+
+
+        List<String> a1=new ArrayList<>();
+        List<Integer> a2 =new ArrayList<>();
+        System.out.println(a1.getClass()==a2.getClass());
 
 
     }
