@@ -1,5 +1,4 @@
-package com.example.tools.generator;
-
+package com.example.generator;
 import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -17,13 +16,13 @@ import java.util.List;
 
 /**
  * 代码生成
- * 可以使用的
+ *
  */
 
 @Slf4j
 public class MybatisGenerator {
     //项目全路径吧
-    private static final String BASE = "/priactice_9999_tools/tool";
+    private static final String BASE = "/priactice_0003_juc/juc";
     private static final String DIAN = ".";
     private static final String SUB_MODULE_NAME = "structure";
 
@@ -144,7 +143,7 @@ public class MybatisGenerator {
      */
     private static StrategyConfig getStrategyConfig() {
         // 需要自动生成的表，多表逗号隔开
-        String[] tables = new String[]{"dc_notice_user","dc_notice_record"};
+        String[] tables = new String[]{"dc_notice_user"};
         StrategyConfig strategyConfig = new StrategyConfig();
         // 是否生成常量字段
         strategyConfig.setEntityColumnConstant(true);
