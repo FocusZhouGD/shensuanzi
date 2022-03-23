@@ -16,6 +16,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 如何理解aop？
+ * 首先aop是基于动态代理实现，如果代理目标是一个接口的就是采用jdk代理实现，如果不是就采用cglib
+ */
 @Aspect
 @Component
 @Slf4j

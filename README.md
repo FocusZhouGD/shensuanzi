@@ -12,3 +12,17 @@
 参考：
 
 
+@Valid
+@NotNull(message = "")
+@Length(max = 20, message = "")
+@EnumValid(target = StatusEnum.class,message = "auditStatus值异常")
+    private Integer auditStatus;
+
+
+StatusEnum{
+success(0,"通过"),
+fail(1,"不通过"),
+    ;
+
+}
+ 
