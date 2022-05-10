@@ -144,7 +144,7 @@ public class MybatisGenerator {
      */
     private static StrategyConfig getStrategyConfig() {
         // 需要自动生成的表，多表逗号隔开
-        String[] tables = new String[]{"dc_notice_user","dc_notice_record"};
+        String[] tables = new String[]{"dc_share_health_report_record"};
         StrategyConfig strategyConfig = new StrategyConfig();
         // 是否生成常量字段
         strategyConfig.setEntityColumnConstant(true);
@@ -156,7 +156,7 @@ public class MybatisGenerator {
         strategyConfig.setEntityLombokModel(true);
         strategyConfig.setRestControllerStyle(true);
         //去掉表前缀
-        //strategyConfig.setTablePrefix("fh_");
+        strategyConfig.setTablePrefix("dc_");
         //逻辑删除字段
         //strategyConfig.setLogicDeleteFieldName("is_delete");
 

@@ -32,5 +32,11 @@ public class StringReplceTest {
         System.out.println(generateWelcome(s,template));
 
         System.out.println(generateWelcome(jsonStr,template));
+
+        //获取所有的订单信息
+        
     }
+
+
+
 }
