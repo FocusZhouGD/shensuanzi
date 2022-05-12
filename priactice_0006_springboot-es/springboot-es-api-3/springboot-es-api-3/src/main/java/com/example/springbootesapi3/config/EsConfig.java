@@ -9,9 +9,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class EsConfig {
 
+
     @Bean
-    RestHighLevelClient client = new RestHighLevelClient(
-            RestClient.builder(
-                    new HttpHost("localhost", 9200, "http");
-                   // new HttpHost("localhost", 9201, "http")));
+    public RestHighLevelClient restHighLevelClient() {
+        RestHighLevelClient client = new RestHighLevelClient(
+                RestClient.builder(
+//                        new HttpHost("localhost", 9200, "http");
+                        new HttpHost("localhost", 9201, "http")));
+
+        return client;
+
+    }
+
+
 }
