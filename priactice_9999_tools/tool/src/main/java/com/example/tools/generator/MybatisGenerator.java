@@ -108,10 +108,11 @@ public class MybatisGenerator {
      */
     private static DataSourceConfig getDataSourceConfig() {
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig.setUrl("jdbc:mysql://192.168.1.134:3306/dep_admin");
+        dataSourceConfig.setUrl("jdbc:mysql://localhost:3312/im");
         dataSourceConfig.setDriverName("com.mysql.cj.jdbc.Driver");
         dataSourceConfig.setUsername("root");
-        dataSourceConfig.setPassword("dc2017");
+        //本地 root / 123456
+        dataSourceConfig.setPassword("123456");
         dataSourceConfig.setDbType(DbType.MYSQL);
         return dataSourceConfig;
     }
@@ -144,7 +145,7 @@ public class MybatisGenerator {
      */
     private static StrategyConfig getStrategyConfig() {
         // 需要自动生成的表，多表逗号隔开
-        String[] tables = new String[]{"dc_share_health_report_record"};
+        String[] tables = new String[]{"dc_clinic_oral_disease_price_dict"};
         StrategyConfig strategyConfig = new StrategyConfig();
         // 是否生成常量字段
         strategyConfig.setEntityColumnConstant(true);

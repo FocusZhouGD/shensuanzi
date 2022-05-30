@@ -10,6 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
+/**
+ * 1.anzuang https://blog.csdn.net/sinat_38852244/article/details/122840506
+ *
+ */
+
 @SpringBootTest
 class SpringbootEsApi3ApplicationTests {
 
@@ -19,6 +24,8 @@ class SpringbootEsApi3ApplicationTests {
     @Test
     void contextLoads() {
     }
+
+
 
     @Test
     void testCreateIndex() throws IOException {
