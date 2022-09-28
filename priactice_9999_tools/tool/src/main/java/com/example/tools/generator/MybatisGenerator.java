@@ -108,7 +108,7 @@ public class MybatisGenerator {
      */
     private static DataSourceConfig getDataSourceConfig() {
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig.setUrl("jdbc:mysql://192.168.1.134:3306/dep_admin");
+        dataSourceConfig.setUrl("jdbc:mysql://172.16.21.11:3306/dep_admin");
         dataSourceConfig.setDriverName("com.mysql.cj.jdbc.Driver");
         dataSourceConfig.setUsername("root");
         //本地 root / 123456
@@ -146,7 +146,7 @@ public class MybatisGenerator {
     private static StrategyConfig getStrategyConfig() {
         // 需要自动生成的表，多表逗号隔开
         //"dc_removable_denture","dc_removable_denture_component",
-        String[] tables = new String[]{"dc_removable_denture","dc_removable_denture_component","dc_removable_denture_component_dict","dc_removable_denture_tooth_tra_encom","dc_removable_denture_work_order"};
+        String[] tables = new String[]{"dc_sys_user_oral_problem_record"};
         StrategyConfig strategyConfig = new StrategyConfig();
         // 是否生成常量字段
         strategyConfig.setEntityColumnConstant(true);
