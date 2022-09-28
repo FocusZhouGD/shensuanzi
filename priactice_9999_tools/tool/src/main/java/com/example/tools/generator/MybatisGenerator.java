@@ -108,7 +108,7 @@ public class MybatisGenerator {
      */
     private static DataSourceConfig getDataSourceConfig() {
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig.setUrl("jdbc:mysql://172.16.21.11:3306/dep_admin");
+        dataSourceConfig.setUrl("jdbc:mysql://172.16.21.10:3306/dep_admin");
         dataSourceConfig.setDriverName("com.mysql.cj.jdbc.Driver");
         dataSourceConfig.setUsername("root");
         //本地 root / 123456
